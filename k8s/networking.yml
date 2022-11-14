@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: fruitstall
+  namespace: tracklines
   name: soon
   annotations:
     cert-manager.io/cluster-issuer: acme-prod
@@ -13,11 +13,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - fruitstall.net
-        - www.fruitstall.net
-      secretName: fruitstall-soon
+        - tracklin.es
+        - www.tracklin.es
+      secretName: tracklines-soon
   rules:
-    - host: fruitstall.net
+    - host: tracklin.es
       http:
         paths:
           - backend:
@@ -27,7 +27,7 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
-    - host: www.fruitstall.net
+    - host: www.tracklin.es
       http:
         paths:
           - backend:
