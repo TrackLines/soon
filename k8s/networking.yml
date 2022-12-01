@@ -14,10 +14,22 @@ spec:
   tls:
     - hosts:
         - tracklin.es
+        - tracklines.dev
         - www.tracklin.es
-      secretName: tracklines-soon
+        - www.tracklines.dev
+      secretName: tracklines-soon-tls
   rules:
     - host: tracklin.es
+      http:
+        paths:
+          - backend:
+              service:
+                name: soon
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+    - host: tracklines.dev
       http:
         paths:
           - backend:
@@ -37,3 +49,13 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
+    - host: www.tracklines.dev
+      http:
+          paths:
+            - backend:
+                service:
+                    name: soon
+                    port:
+                      number: 80
+              path: /
+              pathType: Prefix
